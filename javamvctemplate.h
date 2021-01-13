@@ -2,6 +2,7 @@
 #define JAVAMVCTEMPLATE_H
 
 #include <QWidget>
+#include "httputil.h"
 
 namespace Ui {
 class JavaMVCTemplate;
@@ -15,10 +16,14 @@ public:
     explicit JavaMVCTemplate(QWidget *parent = nullptr);
     ~JavaMVCTemplate();
 
+     httpUtil *ht;
+
 private slots:
     void on_back_clicked();
 
     void on_buildTemplate_clicked();
+
+     void responseJavaTemplateResult(QString result);
 
 private:
     Ui::JavaMVCTemplate *ui;
