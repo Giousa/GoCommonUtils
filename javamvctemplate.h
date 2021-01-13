@@ -18,6 +18,8 @@ public:
 
      httpUtil *ht;
 
+     QString path;
+
 private slots:
     void on_back_clicked();
 
