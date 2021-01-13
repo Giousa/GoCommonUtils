@@ -1,5 +1,6 @@
 #include "toolsmenuwidget.h"
 #include "ui_toolsmenuwidget.h"
+#include "javamvctemplate.h"
 
 ToolsMenuWidget::ToolsMenuWidget(QWidget *parent)
     : QWidget(parent)
@@ -16,5 +17,7 @@ ToolsMenuWidget::~ToolsMenuWidget()
 
 void ToolsMenuWidget::on_btnJavaMVC_clicked()
 {
-
+    JavaMVCTemplate *j = new JavaMVCTemplate();
+    j->show();
+    this->hide();
 }
