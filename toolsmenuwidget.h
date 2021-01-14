@@ -18,6 +18,8 @@ public:
 private slots:
     void on_btnJavaMVC_clicked();
 
+    void on_btnMysqlStruct_clicked();
+
 private:
     Ui::ToolsMenuWidget *ui;
 };

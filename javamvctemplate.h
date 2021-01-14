@@ -25,7 +25,7 @@ private slots:
 
     void on_buildTemplate_clicked();
 
-     void responseJavaTemplateResult(QString result);
+    void responseJavaTemplateResult(QString result);
 
 private:
     Ui::JavaMVCTemplate *ui;

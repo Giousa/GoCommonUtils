@@ -19,15 +19,18 @@ SOURCES += \
     httputil.cpp \
     javamvctemplate.cpp \
     main.cpp \
+    mysqltostructwidget.cpp \
     toolsmenuwidget.cpp
 
 HEADERS += \
     httputil.h \
     javamvctemplate.h \
+    mysqltostructwidget.h \
     toolsmenuwidget.h
 
 FORMS += \
     javamvctemplate.ui \
+    mysqltostructwidget.ui \
     toolsmenuwidget.ui
 
 # Default rules for deployment.
