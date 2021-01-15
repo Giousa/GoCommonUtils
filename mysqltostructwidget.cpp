@@ -63,7 +63,8 @@ void MysqlToStructWidget::on_pushButton_clicked()
     params.insert("password",password);
     params.insert("dbName",dbName);
 
-    t->get("http://localhost:8282/mysqlToStruct",params);
+//    t->get("http://localhost:8282/mysqlToStruct",params);
+     t->get("http://139.224.46.106:8282/mysqlToStruct",params);
 
 }
 

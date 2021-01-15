@@ -18,6 +18,7 @@ public:
 
     httpUtil *t;
 
+
     QString path;
 
 private slots:
@@ -26,6 +27,8 @@ private slots:
     void on_pushButton_clicked();
 
     void responseMysqlToStructResult(QString result);
+
+
 
 private:
     Ui::MysqlToStructWidget *ui;

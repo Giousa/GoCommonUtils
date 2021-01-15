@@ -28,6 +28,7 @@ public:
 
     void loadUrlPic(QString url);
 
+    void downLoadFile(QString url,QMap<QString,QString> params);
 
 
 
@@ -38,6 +39,8 @@ signals:
     void responsePost(QString result);
 
     void responsePic(QPixmap *pix);
+
+    void responseDownloadFile(QByteArray result);
 
 };
 

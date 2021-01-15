@@ -16,12 +16,15 @@ void httpUtil::get(QString url, QMap<QString, QString> params)
     QString realUrl = getRealUrl(url,params);
     qDebug() << "GET请求地址：" << realUrl;
     connect(manager, &QNetworkAccessManager::finished,[=](QNetworkReply *reply){
+
         if (reply->error() == QNetworkReply::NoError){
              QByteArray bytes = reply->readAll();
              if(bytes != ""){
 //                 qDebug() << "get 返回结果：" << QString(bytes);
 //                 QJsonObject result = parseRequestResult(bytes);
 //                 qDebug() << result;
+//                 qDebug() << "get 返回字节流：";
+//                 qDebug() << bytes;
                  responseGet(QString(bytes));
 
              }
@@ -51,6 +54,7 @@ void httpUtil::post(QString url, QMap<QString, QString> params)
              if(bytes != ""){
 //                 QJsonObject result = parseRequestResult(bytes);
 //                 qDebug() << result;
+
                  responsePost(QString(bytes));
 
              }
@@ -134,6 +138,39 @@ void httpUtil::loadUrlPic(QString url)
 
 
     qDebug() << "开始请求：";
+
+    manager->get(request);
+}
+
+void httpUtil::downLoadFile(QString url, QMap<QString, QString> params)
+{
+    QString realUrl = getRealUrl(url,params);
+    qDebug() << "GET downLoadFile 请求地址：" << realUrl;
+    connect(manager, &QNetworkAccessManager::finished,[=](QNetworkReply *reply){
+        if (reply->error() == QNetworkReply::NoError){
+             QByteArray bytes = reply->readAll();
+             if(bytes != ""){
+//                 qDebug() << "get 返回结果：" << QString(bytes);
+//                 QJsonObject result = parseRequestResult(bytes);
+                 qDebug() << "donwload 返回字节流：";
+                 qDebug() << bytes;
+//                 responseDownloadFile(QString(bytes));
+                 responseDownloadFile(bytes);
+
+             }
+
+         }else{
+             qDebug()<<"get connect error";
+         }
+         reply->deleteLater();
+
+    });
+
+    QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json")); //设置数据类型
+
+
+    request.setUrl(QUrl(realUrl));
 
     manager->get(request);
 }

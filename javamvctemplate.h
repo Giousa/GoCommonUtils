@@ -17,6 +17,7 @@ public:
     ~JavaMVCTemplate();
 
      httpUtil *ht;
+     httpUtil *t_down;
 
      QString path;
 
@@ -26,6 +27,12 @@ private slots:
     void on_buildTemplate_clicked();
 
     void responseJavaTemplateResult(QString result);
+
+    void responseDownloadResult(QByteArray result);
+
+    void on_btnDownload_clicked();
+
+
 
 private:
     Ui::JavaMVCTemplate *ui;
