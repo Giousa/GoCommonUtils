@@ -34,6 +34,8 @@ private slots:
 
 
 
+    void on_selectDir_clicked();
+
 private:
     Ui::JavaMVCTemplate *ui;
 };

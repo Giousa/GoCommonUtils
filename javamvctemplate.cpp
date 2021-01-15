@@ -107,16 +107,24 @@ void JavaMVCTemplate::responseDownloadResult(QByteArray result)
     qDebug() << "下载返回结果：";
     qDebug() << result;
 
-    QString deskPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    qDebug() << "文件地址:" << deskPath;
-    createFile(deskPath+"/temp/","javaTemplate.zip");
-    QString filePath = deskPath+"/temp/javaTemplate.zip";
+//    QString deskPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+//    qDebug() << "文件地址:" << deskPath;
+//    createFile(deskPath+"/temp/","javaTemplate.zip");
+//    QString filePath = deskPath+"/temp/javaTemplate.zip";
 
 //    createFile(deskPath+"/temp/","javaTemplate.jpg");
 //    QString filePath = deskPath+"/temp/javaTemplate.jpg";
 
+    qDebug() << "本地存储地址:" << path;
+    createFile(path,"/javaTemplate.zip");
+    QString filePath = path+"/javaTemplate.zip";
+    qDebug() << "本地文件路径:" << filePath;
+
     QFile file(filePath);
-    file.open(QIODevice::ReadWrite);
+    bool flag = file.open(QIODevice::ReadWrite);
+    if (!flag) {
+        file.open(QIODevice::ReadWrite);
+    }
     file.write(result);
 
 
@@ -125,9 +133,11 @@ void JavaMVCTemplate::responseDownloadResult(QByteArray result)
 void JavaMVCTemplate::on_btnDownload_clicked()
 {
     QMap<QString,QString> params;
+    params.insert("fileName","files.zip");
     //如：https://chdspine.oss-cn-shanghai.aliyuncs.com/ai/9b0360772bf44cbb87e269f543a59920.png
-    t_down->downLoadFile("http://139.224.46.106:8282/downloadJavaMVCTemplate",params);
-//    t_down->downLoadFile("https://chdspine.oss-cn-shanghai.aliyuncs.com/ai/9b0360772bf44cbb87e269f543a59920.png",params);
+    //    t_down->downLoadFile("https://chdspine.oss-cn-shanghai.aliyuncs.com/ai/9b0360772bf44cbb87e269f543a59920.png",params);
+    t_down->downLoadFile("http://139.224.46.106:8282/downloadBuildFile",params);
+
 
 }
 
@@ -163,4 +173,13 @@ void createFile(QString filePath,QString fileName)
     //将程序当前路径设置为原来的路径
     tempDir.setCurrent(currentDir);
     qDebug()<<tempDir.currentPath();
+}
+
+void JavaMVCTemplate::on_selectDir_clicked()
+{
+//    QString path = QFileDialog::getOpenFileName(this,"打开文件","/");
+    QString path = QFileDialog::getExistingDirectory(this, "选择目录","/");
+
+    ui->editPath->setText(path);
+
 }
