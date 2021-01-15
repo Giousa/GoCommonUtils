@@ -20,8 +20,8 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="1">
-    <widget class="QLabel" name="label_2">
+   <item row="1" column="1">
+    <widget class="QLabel" name="label">
      <property name="minimumSize">
       <size>
        <width>80</width>
@@ -29,7 +29,46 @@
       </size>
      </property>
      <property name="text">
-      <string>文件名称：</string>
+      <string>存储路径(必填)：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLineEdit" name="editPassword">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>h5s/X_7FLkzj</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLineEdit" name="editDbName">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>das</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="label_4">
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>root(必填)：</string>
      </property>
     </widget>
    </item>
@@ -43,6 +82,39 @@
      </property>
      <property name="text">
       <string>连接mysql并生成struct</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="label_5">
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>password(必填)：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QToolButton" name="selectDir">
+     <property name="text">
+      <string>选择</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="editPath">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>/Users/zhangmengmeng/Downloads/temp</string>
      </property>
     </widget>
    </item>
@@ -67,6 +139,19 @@
      </property>
     </widget>
    </item>
+   <item row="4" column="2">
+    <widget class="QLineEdit" name="editIp">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>47.103.115.252</string>
+     </property>
+    </widget>
+   </item>
    <item row="4" column="1">
     <widget class="QLabel" name="label_3">
      <property name="minimumSize">
@@ -87,29 +172,13 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="2">
-    <widget class="QLineEdit" name="editDbName">
+   <item row="2" column="2">
+    <widget class="QLineEdit" name="editFileName">
      <property name="minimumSize">
       <size>
        <width>0</width>
        <height>30</height>
       </size>
-     </property>
-     <property name="text">
-      <string>das</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLineEdit" name="editPath">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>/Users/zhangmengmeng/Downloads/temp</string>
      </property>
     </widget>
    </item>
@@ -126,8 +195,8 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <widget class="QLabel" name="label_4">
+   <item row="2" column="1">
+    <widget class="QLabel" name="label_2">
      <property name="minimumSize">
       <size>
        <width>80</width>
@@ -135,20 +204,7 @@
       </size>
      </property>
      <property name="text">
-      <string>root(必填)：</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label">
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>存储路径(必填)：</string>
+      <string>文件名称：</string>
      </property>
     </widget>
    </item>
@@ -165,52 +221,16 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="2">
-    <widget class="QLineEdit" name="editPassword">
+   <item row="9" column="1" colspan="2">
+    <widget class="QPushButton" name="btnDown">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>30</height>
+       <height>40</height>
       </size>
      </property>
      <property name="text">
-      <string>h5s/X_7FLkzj</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QLabel" name="label_5">
-     <property name="minimumSize">
-      <size>
-       <width>80</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>password(必填)：</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLineEdit" name="editFileName">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QLineEdit" name="editIp">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>47.103.115.252</string>
+      <string>下载</string>
      </property>
     </widget>
    </item>

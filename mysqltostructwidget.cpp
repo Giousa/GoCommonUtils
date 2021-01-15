@@ -3,6 +3,7 @@
 #include "toolsmenuwidget.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include "fileutils.h"
 
 MysqlToStructWidget::MysqlToStructWidget(QWidget *parent) :
     QWidget(parent),
@@ -11,8 +12,11 @@ MysqlToStructWidget::MysqlToStructWidget(QWidget *parent) :
     ui->setupUi(this);
 
     t = new httpUtil();
+    t_down = new httpUtil();
 
     connect(t,&httpUtil::responseGet,this,&MysqlToStructWidget::responseMysqlToStructResult);
+
+    connect(t_down,&httpUtil::responseDownloadFile,this,&MysqlToStructWidget::responseDownloadResult);
 }
 
 MysqlToStructWidget::~MysqlToStructWidget()
@@ -53,7 +57,11 @@ void MysqlToStructWidget::on_pushButton_clicked()
         return;
     }
 
-    path = filePath;
+//    path = filePath;
+//    if (fileName == ""){
+//        fileName = "mysqlToStruct.go";
+//    }
+//    this->fileName = fileName;
 
     QMap<QString,QString> params;
     params.insert("storageAddress",filePath);
@@ -71,20 +79,18 @@ void MysqlToStructWidget::on_pushButton_clicked()
 void MysqlToStructWidget::responseMysqlToStructResult(QString result)
 {
     qDebug() << "请求结果：" << result;
+    QString path = ui->editPath->text();
     qDebug() << "路径地址：" << path;
 
-    QString title = "是否打开路径目录？";
-    QString info = "生成结果：成功！";
+    QString title = "成功！";
     if(result != "ok"){
-        title = "文件生成失败!";
-        info = "原因："+result;
+        title = "失败："+result;
     }
 
     QMessageBox msgBox;
     msgBox.setText(title);
-    msgBox.setInformativeText(info);
-    msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
-    msgBox.setDefaultButton(QMessageBox::No);
+    msgBox.setStandardButtons(QMessageBox::Yes);
+    msgBox.setDefaultButton(QMessageBox::Yes);
     msgBox.setStyleSheet("QLabel{"
                          "min-width:400px;"
                          "min-height:40px; "
@@ -92,19 +98,48 @@ void MysqlToStructWidget::responseMysqlToStructResult(QString result)
                          "}");
 
 
-    int re = msgBox.exec();
-    switch (re){
-        case QMessageBox::Yes:
-            qDebug()<<"Yes";
-            if(result == "ok"){
-                //打开目录
-                QFileDialog::getOpenFileName(this,"打开文件目录",path);
-            }
-            break;
-        case QMessageBox::No:
-            qDebug()<<"No";
-            break;
-        default:
-            break;
+    msgBox.exec();
+
+
+}
+
+void MysqlToStructWidget::responseDownloadResult(QByteArray result)
+{
+
+    QString path = ui->editPath->text();
+    QString fileName = ui->editFileName->text();
+    if (fileName == ""){
+        fileName = "mysqlToStruct.go";
     }
+
+    qDebug() << "mysql转struct本地存储地址:" << path;
+    FileUtils::createFile(path,"/"+fileName);
+    QString filePath = path+"/"+fileName;
+    qDebug() << "mysql转struct本地文件路径:" << filePath;
+
+    QFile file(filePath);
+    bool flag = file.open(QIODevice::ReadWrite);
+    if (!flag) {
+        file.open(QIODevice::ReadWrite);
+    }
+    file.write(result);
+}
+
+void MysqlToStructWidget::on_selectDir_clicked()
+{
+    QString path = QFileDialog::getExistingDirectory(this, "选择目录","/");
+
+    ui->editPath->setText(path);
+}
+
+void MysqlToStructWidget::on_btnDown_clicked()
+{
+    QMap<QString,QString> params;
+    QString fileName = ui->editFileName->text();
+    if (fileName == ""){
+        fileName = "mysqlToStruct.go";
+    }
+
+    params.insert("fileName",fileName);
+    t_down->downLoadFile("http://139.224.46.106:8282/downloadBuildFile",params);
 }

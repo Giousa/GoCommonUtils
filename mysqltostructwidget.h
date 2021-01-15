@@ -17,9 +17,11 @@ public:
     ~MysqlToStructWidget();
 
     httpUtil *t;
+    httpUtil *t_down;
 
 
-    QString path;
+//    QString path;
+//    QString fileName;
 
 private slots:
     void on_toolButton_clicked();
@@ -28,7 +30,11 @@ private slots:
 
     void responseMysqlToStructResult(QString result);
 
+    void responseDownloadResult(QByteArray result);
 
+    void on_selectDir_clicked();
+
+    void on_btnDown_clicked();
 
 private:
     Ui::MysqlToStructWidget *ui;
